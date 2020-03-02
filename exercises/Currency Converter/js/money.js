@@ -1,3 +1,6 @@
+const fromSelect = document.querySelector('[name="from_currency"]');
+const toSelect = document.querySelector('[name="to_currency"]');
+
 const currencies = {
   USD: 'United States Dollar',
   AUD: 'Australian Dollar',
@@ -41,4 +44,5 @@ function generateOptions(options) {
 }
 
 const optionsHTML = generateOptions(currencies);
-console.log(optionsHTML);
+fromSelect.innerHTML = optionsHTML;
+toSelect.innerHTML = optionsHTML;
