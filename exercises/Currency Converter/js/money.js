@@ -37,10 +37,12 @@ const currencies = {
 };
 
 function generateOptions(options) {
-  return Object.entries(options).map(
-    ([currencyCode, currencyName]) =>
-      `<option value="${currencyCode}">${currencyName}</option>`
-  );
+  return Object.entries(options)
+    .map(
+      ([currencyCode, currencyName]) =>
+        `<option value="${currencyCode}">${currencyCode} - ${currencyName}</option>`
+    )
+    .join('');
 }
 
 const optionsHTML = generateOptions(currencies);
