@@ -25,14 +25,18 @@ async function fetchJoke() {
   return data;
 }
 
-function randomItemFromArray(array) {
-  return array[Math.floor(Math.random() * array.length)];
+function randomItemFromArray(array, lastItem) {
+  const item = array[Math.floor(Math.random() * array.length)];
+  if (item === lastItem) {
+    return randomItemFromArray(array, lastItem);
+  }
+  return item;
 }
 
 async function handleClick() {
   const { joke } = await fetchJoke();
   jokeHandle.textContent = joke;
-  const reaction = randomItemFromArray(buttonText);
+  const reaction = randomItemFromArray(buttonText, jokeButton.textContent);
   jokeButton.textContent = reaction;
 }
 
