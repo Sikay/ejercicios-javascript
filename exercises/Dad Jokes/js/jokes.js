@@ -1,4 +1,5 @@
 const jokeButton = document.querySelector('.getJoke');
+const jokeHandle = document.querySelector('.joke p');
 const baseEndPoint = 'https://icanhazdadjoke.com/';
 
 const buttonText = [
@@ -21,7 +22,12 @@ const headerApiJoke = {
 async function fetchJoke() {
   const response = await fetch(`${baseEndPoint}`, headerApiJoke);
   const data = await response.json();
-  console.log(data);
+  return data;
 }
 
-jokeButton.addEventListener('click', fetchJoke);
+async function handleClick() {
+  const { joke } = await fetchJoke();
+  jokeHandle.textContent = joke;
+}
+
+jokeButton.addEventListener('click', handleClick);
