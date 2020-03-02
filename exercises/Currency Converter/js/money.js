@@ -32,3 +32,13 @@ const currencies = {
   ZAR: 'South African Rand',
   EUR: 'Euro',
 };
+
+function generateOptions(options) {
+  return Object.entries(options).map(
+    ([currencyCode, currencyName]) =>
+      `<option value="${currencyCode}">${currencyName}</option>`
+  );
+}
+
+const optionsHTML = generateOptions(currencies);
+console.log(optionsHTML);
