@@ -25,9 +25,15 @@ async function fetchJoke() {
   return data;
 }
 
+function randomItemFromArray(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
 async function handleClick() {
   const { joke } = await fetchJoke();
   jokeHandle.textContent = joke;
+  const reaction = randomItemFromArray(buttonText);
+  jokeButton.textContent = reaction;
 }
 
 jokeButton.addEventListener('click', handleClick);
