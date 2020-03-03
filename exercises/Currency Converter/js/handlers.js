@@ -1,6 +1,6 @@
-import { formatCurrency } from './utils';
-import { convertMoney } from './lib';
-import { fromAmount, fromSelect, toSelect, toAmount } from './elements';
+import { formatCurrency } from './utils.js';
+import { convertMoney } from './lib.js';
+import { fromAmount, fromSelect, toSelect, toAmount } from './elements.js';
 
 export async function handleInput() {
   const rawAmount = await convertMoney(

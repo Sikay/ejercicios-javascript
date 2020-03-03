@@ -4,7 +4,6 @@ const ratesByBase = {};
 export async function fetchRates(base = 'USD') {
   const response = await fetch(`${baseEndpoint}?base=${base}`);
   const rates = await response.json();
-  console.log(rates);
   return rates;
 }
 
