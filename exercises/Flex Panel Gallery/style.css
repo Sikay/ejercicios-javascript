@@ -98,4 +98,5 @@ body {
 
 .panel.open {
   font-size: 40px;
+  flex: 5;
 }
