@@ -6,11 +6,12 @@ function handleCheck(event) {
   let inBetween = false;
   if (event.shiftKey && this.checked) {
     checkboxes.forEach(checkbox => {
-      if (checkbox.checked && !inBetween) {
-        inBetween = true;
-      } else if (checkbox.checked && inBetween) {
-        inBetween = false;
+      // Si el checkbox es el actual entramos en zona intermedia
+      // o si es el ultimo salimos de la zona intermedia
+      if (checkbox === this || checkbox === lastChecked) {
+        inBetween = !inBetween;
       }
+
       if (inBetween) {
         checkbox.checked = true;
       }
