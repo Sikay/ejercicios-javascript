@@ -3,10 +3,17 @@ const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
 let lastChecked;
 
 function handleCheck(event) {
-  const inBetween = false;
+  let inBetween = false;
   if (event.shiftKey && this.checked) {
     checkboxes.forEach(checkbox => {
-      console.log(checkbox);
+      if (checkbox.checked && !inBetween) {
+        inBetween = true;
+      } else if (checkbox.checked && inBetween) {
+        inBetween = false;
+      }
+      if (inBetween) {
+        checkbox.checked = true;
+      }
     });
   }
   lastChecked = this;
