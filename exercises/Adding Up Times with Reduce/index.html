@@ -189,6 +189,10 @@
       .map(timeNode => {
         const [min, secs] = timeNode.split(':');
         return parseFloat(min) * 60 + parseFloat(secs);
+      })
+      .reduce((total, seconds) => {
+        total += seconds;
+        return total;
       });
 
     console.log(seconds);
