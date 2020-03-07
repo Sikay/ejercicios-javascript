@@ -187,13 +187,10 @@
     const seconds = timeNodes
       .map(node => node.dataset.time)
       .map(timeNode => {
-        const [min, secs] = timeNode.split(':');
-        return parseFloat(min) * 60 + parseFloat(secs);
+        const [min, secs] = timeNode.split(':').map(parseFloat);
+        return min * 60 + secs;
       })
-      .reduce((total, seconds) => {
-        total += seconds;
-        return total;
-      });
+      .reduce((total, seconds) => (total += seconds));
 
     console.log(seconds);
   </script>
