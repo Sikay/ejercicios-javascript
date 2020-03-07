@@ -183,25 +183,30 @@
   </ul>
   <script>
     const timeNodes = Array.from(document.querySelectorAll('[data-time]'));
-    const secondsInHour = 3600;
-    const secondsInMinute = 60;
 
-    const seconds = timeNodes
-      .map(node => node.dataset.time)
-      .map(timeNode => {
-        const [min, secs] = timeNode.split(':').map(parseFloat);
-        return min * secondsInMinute + secs;
-      })
-      .reduce((total, seconds) => (total += seconds));
+    function totalTimeVideos(videoTimeNodes) {
+      const secondsInHour = 3600;
+      const secondsInMinute = 60;
 
-    let secondsLeft = seconds;
-    const hours = Math.floor(secondsLeft / secondsInHour);
-    secondsLeft %= secondsInHour;
+      const seconds = timeNodes
+        .map(node => node.dataset.time)
+        .map(timeNode => {
+          const [min, secs] = timeNode.split(':').map(parseFloat);
+          return min * secondsInMinute + secs;
+        })
+        .reduce((total, secondsInVideo) => (total += secondsInVideo));
 
-    const minutes = Math.floor(secondsLeft / secondsInMinute);
-    secondsLeft %= secondsInMinute;
+      let secondsLeft = seconds;
+      const hours = Math.floor(secondsLeft / secondsInHour);
+      secondsLeft %= secondsInHour;
 
-    console.log(hours, minutes, secondsLeft);
+      const minutes = Math.floor(secondsLeft / secondsInMinute);
+      secondsLeft %= secondsInMinute;
+
+      return `${hours}:${minutes}:${secondsLeft}`;
+    }
+
+    console.log(totalTimeVideos(timeNodes));
   </script>
 </body>
 </html>
