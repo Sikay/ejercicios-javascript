@@ -188,7 +188,7 @@
       const secondsInHour = 3600;
       const secondsInMinute = 60;
 
-      const seconds = timeNodes
+      const seconds = videoTimeNodes
         .map(node => node.dataset.time)
         .map(timeNode => {
           const [min, secs] = timeNode.split(':').map(parseFloat);
