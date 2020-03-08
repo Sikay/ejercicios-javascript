@@ -16,9 +16,25 @@ function populateVoices() {
     .join();
 }
 
+function toggle(startOver = true) {
+  speechSynthesis.cancel();
+  if (startOver) {
+    speechSynthesis.speak(msg);
+  }
+}
+
 function setVoice() {
   msg.voices = voices.find(voice => voice.name === this.value);
+  toggle(false);
+}
+
+function setOption() {
+  msg[this.name] = this.value;
+  toggle(false);
 }
 
 speechSynthesis.addEventListener('voiceschanged', populateVoices);
 voicesDropdown.addEventListener('change', setVoice);
+options.forEach(option => option.addEventListener('change', setOption));
+speakButton.addEventListener('click', toggle);
+stopButton.addEventListener('click', () => toggle(false));
