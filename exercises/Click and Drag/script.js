@@ -8,8 +8,6 @@ function handleMouseDown(e) {
   slider.classList.add('active');
   startX = e.pageX - slider.offsetLeft;
   scrollLeft = slider.scrollLeft;
-  console.log(startX);
-  console.log(scrollLeft);
 }
 
 function handleMouseIsNotDown() {
@@ -17,10 +15,15 @@ function handleMouseIsNotDown() {
   slider.classList.remove('active');
 }
 
+function handleMouseMove(e) {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 3;
+  slider.scrollLeft = scrollLeft - walk;
+}
+
 slider.addEventListener('mousedown', handleMouseDown);
 slider.addEventListener('mouseleave', handleMouseIsNotDown);
 slider.addEventListener('mouseup', handleMouseIsNotDown);
-slider.addEventListener('mousemove', () => {
-  if (!isDown) return;
-  console.log(isDown);
-});
+slider.addEventListener('mousemove', handleMouseMove);
